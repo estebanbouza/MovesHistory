@@ -7,6 +7,7 @@
 //
 
 #import "EBAppDelegate.h"
+#import "EBMainViewController.h"
 
 @implementation EBAppDelegate
 
@@ -17,7 +18,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+
+    EBMainViewController *mainViewController = [EBMainViewController new];
+    
+    self.window.rootViewController = mainViewController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
