@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3CD0B06B-43AD-496A-B939-E930B8F0BD14</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Moves</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5BF19D5B-1783-46F2-9D1A-B0E2855A24C3</key>
+		<string>https://github.com/estebanbouza/MovesHistory.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Moves.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5BF19D5B-1783-46F2-9D1A-B0E2855A24C3</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/estebanbouza/MovesHistory.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5BF19D5B-1783-46F2-9D1A-B0E2855A24C3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5BF19D5B-1783-46F2-9D1A-B0E2855A24C3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Moves</string>
+		</dict>
+	</array>
+</dict>
+</plist>
