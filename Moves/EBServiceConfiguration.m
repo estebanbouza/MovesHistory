@@ -7,28 +7,76 @@
 //
 
 #import "EBServiceConfiguration.h"
+#import "EBMovesConfiguration.h"
 
-typedef NS_ENUM(NSInteger, MVAuthScope) {
-    MVAuthActivityScope     = 1 << 1,
-    MVAuthLocationScope     = 1 << 2
-};
 
 @implementation EBServiceConfiguration
 
+#pragma mark - Lifecycle
+
++ (EBServiceConfiguration *)sharedServiceConfiguration {
+    static dispatch_once_t onceToken;
+    static EBServiceConfiguration *instance;
+    
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc] init];
+    });
+    
+    return instance;
+}
+
+#pragma mark - Utils
+
++ (NSString *)descriptionForScope:(MVAuthScope)scope {
+    NSString *desc = [NSString string];
+    
+    if (scope & MVAuthLocationScope) {
+        desc = [desc stringByAppendingString:@" location"];
+    }
+    if (scope & MVAuthActivityScope) {
+        desc = [desc stringByAppendingString:@" activity"];
+    }
+    
+    desc = [desc stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
+    desc = [desc stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    
+    return desc;
+}
+
+#pragma mark - URLs
 - (NSURL *)authBaseURL {
     return [NSURL URLWithString:@"https://api.moves-app.com/oauth/v1"];
 }
 
-- (NSURL *)authURLWithClientID:(NSString *)clientID
-                   redirectURI:(NSString *)redirectURI
-                         scope:(MVAuthScope)scope {
+- (NSURL *)appAuthURLWithRedirectURI:(NSString *)redirectURI
+                               scope:(MVAuthScope)scope {
+    NSString const * movesClientID = MOVES_CLIENT_ID;
+    NSString *scopeString = [EBServiceConfiguration descriptionForScope:scope];
+    
+    NSString *urlString = [NSString stringWithFormat:@"moves://app/authorize?client_id=%@&redirect_uri=%@&scope=%@",
+                           movesClientID,
+                           redirectURI,
+                           scopeString];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    DLog(@"%@", url);
+    
+    return url;
+}
 
-    NSURL *baseURL = [self authBaseURL];
+#pragma mark - Services
+#pragma mark Auth
+
+- (BOOL)authWithRedirectURI:(NSString *)redirectURI
+                      scope:(MVAuthScope)scope {
     
-    baseURL = [NSURL URLWithString:@"authorize" relativeToURL:baseURL];
-    baseURL = [NSURL URLWithString:<#(NSString *)#>]
+    NSURL *url = [self appAuthURLWithRedirectURI:redirectURI scope:scope];
     
-    return baseURL;
+    return [[UIApplication sharedApplication] openURL:url];
+}
+
+- (BOOL)authenticate {
+    return [self authWithRedirectURI:@"ebmoves://asdf" scope:MVAuthLocationScope | MVAuthActivityScope];
 }
 
 

@@ -10,4 +10,17 @@
 
 @interface EBServiceConfiguration : NSObject
 
+typedef NS_ENUM(NSInteger, MVAuthScope) {
+    MVAuthActivityScope     = 1 << 1,
+    MVAuthLocationScope     = 1 << 2
+};
+
+#pragma mark - Lifecycle
++ (EBServiceConfiguration *)sharedServiceConfiguration;
+
+#pragma mark - Auth service
+/** Authenticates with Moves API */
+- (BOOL)authenticate;
+
+
 @end

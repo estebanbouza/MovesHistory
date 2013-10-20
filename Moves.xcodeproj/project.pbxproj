@@ -42,6 +42,7 @@
 		5B091A3E180B4EBD00E5F051 /* EBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBMainViewController.m; sourceTree = "<group>"; };
 		5B091A42180B535500E5F051 /* EBServiceConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBServiceConfiguration.h; sourceTree = "<group>"; };
 		5B091A43180B535500E5F051 /* EBServiceConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBServiceConfiguration.m; sourceTree = "<group>"; };
+		5B245FE0181479C90052804B /* EBMovesConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EBMovesConfiguration.h; sourceTree = "<group>"; };
 		5BF8703F180B4AE9007D5994 /* Moves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moves.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF87042180B4AE9007D5994 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5BF87044180B4AE9007D5994 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -145,6 +146,7 @@
 		5BF8704A180B4AE9007D5994 /* Moves */ = {
 			isa = PBXGroup;
 			children = (
+				5B245FE0181479C90052804B /* EBMovesConfiguration.h */,
 				5B091A3C180B4EA900E5F051 /* View Controllers */,
 				5B091A3B180B4E5E00E5F051 /* Service */,
 				5BF87053180B4AE9007D5994 /* EBAppDelegate.h */,
