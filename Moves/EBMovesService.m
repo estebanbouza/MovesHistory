@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Esteban. All rights reserved.
 //
 
-#import "EBServiceConfiguration.h"
+#import "EBMovesService.h"
 #import "EBMovesConfiguration.h"
 
 
-@implementation EBServiceConfiguration
+@implementation EBMovesService
 
 #pragma mark - Lifecycle
 
-+ (EBServiceConfiguration *)sharedServiceConfiguration {
++ (EBMovesService *)sharedServiceConfiguration {
     static dispatch_once_t onceToken;
-    static EBServiceConfiguration *instance;
+    static EBMovesService *instance;
     
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] init];
@@ -51,7 +51,7 @@
 - (NSURL *)appAuthURLWithRedirectURI:(NSString *)redirectURI
                                scope:(MVAuthScope)scope {
     NSString const * movesClientID = MOVES_CLIENT_ID;
-    NSString *scopeString = [EBServiceConfiguration descriptionForScope:scope];
+    NSString *scopeString = [EBMovesService descriptionForScope:scope];
     
     NSString *urlString = [NSString stringWithFormat:@"moves://app/authorize?client_id=%@&redirect_uri=%@&scope=%@",
                            movesClientID,
@@ -79,5 +79,8 @@
     return [self authWithRedirectURI:@"ebmoves://asdf" scope:MVAuthLocationScope | MVAuthActivityScope];
 }
 
+- (void)saveAuthCode:(NSString *)authCode {
+    
+}
 
 @end

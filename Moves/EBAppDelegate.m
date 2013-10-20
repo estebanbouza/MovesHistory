@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     EBMainViewController *mainViewController = [EBMainViewController new];
@@ -27,6 +28,16 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+
+    DLog(@"url %@", url);
+    DLog(@"source %@", sourceApplication);
+    DLog(@"annotation %@", annotation);
+    
+    return YES;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

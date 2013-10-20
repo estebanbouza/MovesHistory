@@ -7,7 +7,7 @@
 //
 
 #import "EBMainViewController.h"
-#import "EBServiceConfiguration.h"
+#import "EBMovesService.h"
 
 @interface EBMainViewController () {
     UIButton *_loginButton;
@@ -56,7 +56,7 @@
 - (void)loginButtonPressed:(id)sender {
     DLog(@"");
     
-    EBServiceConfiguration *service = [EBServiceConfiguration sharedServiceConfiguration];
+    EBMovesService *service = [EBMovesService sharedServiceConfiguration];
     
     BOOL authStatus = [service authenticate];
     

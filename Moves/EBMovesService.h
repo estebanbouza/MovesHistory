@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EBServiceConfiguration : NSObject
+@interface EBMovesService : NSObject
 
 typedef NS_ENUM(NSInteger, MVAuthScope) {
     MVAuthActivityScope     = 1 << 1,
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, MVAuthScope) {
 };
 
 #pragma mark - Lifecycle
-+ (EBServiceConfiguration *)sharedServiceConfiguration;
++ (EBMovesService *)sharedServiceConfiguration;
 
 #pragma mark - Auth service
 /** Authenticates with Moves API */
