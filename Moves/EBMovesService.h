@@ -22,5 +22,7 @@ typedef NS_ENUM(NSInteger, MVAuthScope) {
 /** Authenticates with Moves API */
 - (BOOL)authenticate;
 
+/** Stores the auth code locally */
+- (void)storeAuthCode:(NSString *)authCode;
 
 @end

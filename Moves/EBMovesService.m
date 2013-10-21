@@ -9,6 +9,11 @@
 #import "EBMovesService.h"
 #import "EBMovesConfiguration.h"
 
+@interface EBMovesService ()
+
+@property (nonatomic, strong) NSString *authCode;
+
+@end
 
 @implementation EBMovesService
 
@@ -64,6 +69,19 @@
     return url;
 }
 
+- (NSURL *)requestAccessTokenURLWithAuthCode:(NSString *)authCode
+                                 redirectURI:(NSString *)redirectURI
+{
+    /*
+     https://api.moves-app.com/oauth/v1/access_token?grant_type=authorization_code&code=<code>&client_id=<client_id>&client_secret=<client_secret>&redirect_uri=<redirect_uri>
+     */
+    NSString *urlString = [NSString stringWithFormat:@"https://api.moves-app.com/oauth/v1/access_token?grant_type=authorization_code&code=%@&client_id=%@&client_secret=%@", authCode, MOVES_CLIENT_ID, MOVES_CLIENT_SECRET];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    return url;
+}
+
 #pragma mark - Services
 #pragma mark Auth
 
@@ -79,8 +97,8 @@
     return [self authWithRedirectURI:@"ebmoves://asdf" scope:MVAuthLocationScope | MVAuthActivityScope];
 }
 
-- (void)saveAuthCode:(NSString *)authCode {
-    
+- (void)storeAuthCode:(NSString *)authCode {
+    self.authCode = authCode;
 }
 
 @end
