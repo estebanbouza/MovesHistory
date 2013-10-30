@@ -12,6 +12,8 @@
 @interface EBMovesService ()
 
 @property (nonatomic, strong) NSString *authCode;
+@property (nonatomic, strong) NSString *accessToken;
+@property (nonatomic, strong) NSString *refreshToken;
 
 @end
 
@@ -24,7 +26,7 @@
     static EBMovesService *instance;
     
     dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
+        instance = [self new];
     });
     
     return instance;
@@ -39,6 +41,21 @@
     });
     
     return operationManager;
+}
+
+- (AFHTTPSessionManager *)authHTTPSessionManager {
+    static dispatch_once_t onceToken;
+    static AFHTTPSessionManager *sessionManager;
+    
+    dispatch_once(&onceToken, ^{
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        sessionConfiguration.HTTPAdditionalHeaders = @{@"Authorization" : [NSString stringWithFormat:@"Bearer %@", self.accessToken]};
+        
+        sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.moves-app.com/api/v1"] sessionConfiguration:sessionConfiguration];
+
+    });
+    
+    return sessionManager;
 }
 
 #pragma mark - Utils
@@ -121,12 +138,26 @@
     AFHTTPRequestOperation * operation = [manager POST:@"https://api.moves-app.com/oauth/v1/access_token" parameters:requestParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         DLog(@"Response Object: %@", responseObject);
         
+        self.accessToken = [responseObject objectForKey:@"access_token"];
+        self.refreshToken = [responseObject objectForKey:@"response_token"];
+        
+        [self requestUserProfile];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         DLog(@"The error was: %@", error);
     }];
     
     [operation start];
+}
+
+- (void)requestUserProfile {
+    AFHTTPSessionManager *manager = [self authHTTPSessionManager];
+    
+    [manager GET:@"user/profile" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        DLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        DLog(@"%@", error);
+    }];
 }
 
 @end
