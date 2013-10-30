@@ -15,14 +15,18 @@ typedef NS_ENUM(NSInteger, MVAuthScope) {
     MVAuthLocationScope     = 1 << 2
 };
 
+typedef void (^MVRequestAccessCompletionBlock)(NSString *accessToken);
+
 #pragma mark - Lifecycle
-+ (EBMovesService *)sharedServiceConfiguration;
++ (EBMovesService *)sharedService;
 
 #pragma mark - Auth service
 /** Authenticates with Moves API */
-- (BOOL)authenticate;
+- (void)authenticate;
 
 /** Stores the auth code locally */
 - (void)storeAuthCode:(NSString *)authCode;
+
+- (void)requestAccessWithCompletionBlock:(MVRequestAccessCompletionBlock)completionBlock;
 
 @end

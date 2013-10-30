@@ -56,11 +56,9 @@
 - (void)loginButtonPressed:(id)sender {
     DLog(@"");
     
-    EBMovesService *service = [EBMovesService sharedServiceConfiguration];
+    EBMovesService *service = [EBMovesService sharedService];
     
-    BOOL authStatus = [service authenticate];
-    
-    DLog(@"Auth status: %d", authStatus);
+    [service authenticate];
 }
 
 
@@ -69,7 +67,32 @@
     
 }
 
+#pragma mark - Public
 
+- (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication {
+    static NSString * const kCodeQueryParamPrefix = @"code=";
+    static NSString * const kValidSourceApplication = @"com.protogeo.Moves";
+    
+    NSString *authCode = nil;
+    
+    if (![kValidSourceApplication isEqualToString:sourceApplication]) return NO;
+    
+    NSString *urlQuery = url.query;
+    NSArray *queryParams = [urlQuery componentsSeparatedByString:@"&"];
+    for (NSString *queryParam in queryParams) {
+        if ([queryParam hasPrefix:kCodeQueryParamPrefix]) {
+            authCode = [queryParam substringFromIndex:kCodeQueryParamPrefix.length];
+            break;
+        }
+    }
+    
+    [[EBMovesService sharedService] storeAuthCode:authCode];
 
+    [[EBMovesService sharedService] requestAccessWithCompletionBlock:^(NSString *accessToken) {
+        DLog(@"Access token is: %@", accessToken);
+    }];
+    
+    return !!authCode;
+}
 
 @end

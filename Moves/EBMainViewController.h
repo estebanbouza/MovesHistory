@@ -10,4 +10,6 @@
 
 @interface EBMainViewController : UIViewController
 
+- (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
+
 @end

@@ -19,7 +19,7 @@
 
 #pragma mark - Lifecycle
 
-+ (EBMovesService *)sharedServiceConfiguration {
++ (EBMovesService *)sharedService {
     static dispatch_once_t onceToken;
     static EBMovesService *instance;
     
@@ -28,6 +28,17 @@
     });
     
     return instance;
+}
+
++ (AFHTTPRequestOperationManager *)sharedHTTPRequestOperationManager {
+    static dispatch_once_t onceToken;
+    static AFHTTPRequestOperationManager *operationManager;
+    
+    dispatch_once(&onceToken, ^{
+        operationManager = [AFHTTPRequestOperationManager manager];
+    });
+    
+    return operationManager;
 }
 
 #pragma mark - Utils
@@ -69,36 +80,51 @@
     return url;
 }
 
-- (NSURL *)requestAccessTokenURLWithAuthCode:(NSString *)authCode
-                                 redirectURI:(NSString *)redirectURI
+- (NSString *)requestAccessTokenURLWithAuthCode:(NSString *)authCode
+                                    redirectURI:(NSString *)redirectURI
 {
     /*
      https://api.moves-app.com/oauth/v1/access_token?grant_type=authorization_code&code=<code>&client_id=<client_id>&client_secret=<client_secret>&redirect_uri=<redirect_uri>
      */
-    NSString *urlString = [NSString stringWithFormat:@"https://api.moves-app.com/oauth/v1/access_token?grant_type=authorization_code&code=%@&client_id=%@&client_secret=%@", authCode, MOVES_CLIENT_ID, MOVES_CLIENT_SECRET];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.moves-app.com/oauth/v1/access_token?grant_type=authorization_code&code=%@&client_id=%@&client_secret=%@&redirect_uri=%@", authCode, MOVES_CLIENT_ID, MOVES_CLIENT_SECRET, redirectURI];
     
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    return url;
+    return urlString;
 }
+
+
 
 #pragma mark - Services
 #pragma mark Auth
 
-- (BOOL)authWithRedirectURI:(NSString *)redirectURI
-                      scope:(MVAuthScope)scope {
+- (BOOL)authenticateWithRedirectURI:(NSString *)redirectURI
+                              scope:(MVAuthScope)scope {
     
     NSURL *url = [self appAuthURLWithRedirectURI:redirectURI scope:scope];
     
     return [[UIApplication sharedApplication] openURL:url];
 }
 
-- (BOOL)authenticate {
-    return [self authWithRedirectURI:@"ebmoves://asdf" scope:MVAuthLocationScope | MVAuthActivityScope];
+- (void)authenticate {
+    [self authenticateWithRedirectURI:@"ebmoves://asdf" scope:MVAuthLocationScope | MVAuthActivityScope];
 }
 
 - (void)storeAuthCode:(NSString *)authCode {
     self.authCode = authCode;
+}
+
+- (void)requestAccessWithCompletionBlock:(MVRequestAccessCompletionBlock)completionBlock {
+    
+    AFHTTPRequestOperationManager *manager = [EBMovesService sharedHTTPRequestOperationManager];
+    
+    AFHTTPRequestOperation * operation = [manager POST:[self requestAccessTokenURLWithAuthCode:self.authCode redirectURI:@"ebmoves://asdf"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        DLog(@"Response Object: %@", responseObject);
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        DLog(@"The error was: %@", error);
+    }];
+    
+    [operation start];
 }
 
 @end

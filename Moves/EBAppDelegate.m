@@ -9,6 +9,12 @@
 #import "EBAppDelegate.h"
 #import "EBMainViewController.h"
 
+@interface EBAppDelegate ()
+
+@property (nonatomic, strong) EBMainViewController *mainViewController;
+
+@end
+
 @implementation EBAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -20,9 +26,9 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    EBMainViewController *mainViewController = [EBMainViewController new];
+    self.mainViewController = [EBMainViewController new];
     
-    self.window.rootViewController = mainViewController;
+    self.window.rootViewController = self.mainViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -31,11 +37,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 
-    DLog(@"url %@", url);
-    DLog(@"source %@", sourceApplication);
-    DLog(@"annotation %@", annotation);
-    
-    return YES;
+    return [self.mainViewController handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 
