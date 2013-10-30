@@ -9,6 +9,8 @@
 #import "EBMainViewController.h"
 #import "EBMovesService.h"
 
+#import "VOUserProfile.h"
+
 @interface EBMainViewController () {
     UIButton *_loginButton;
     UIButton *_syncButton;
@@ -63,7 +65,11 @@
 
 
 - (void)syncButtonPressed:(id)sender {
-    DLog(@"");
+    EBMovesService *service = [EBMovesService sharedService];
+    
+    [service requestUserProfileWithCompletionBlock:^(VOUserProfile *userProfile) {
+        DLog(@"User profile is: %@, first date: %@", userProfile.userID, userProfile.firstDate);
+    }];
     
 }
 
@@ -88,8 +94,8 @@
     
     [[EBMovesService sharedService] storeAuthCode:authCode];
 
-    [[EBMovesService sharedService] requestAccessWithCompletionBlock:^(NSString *accessToken) {
-        DLog(@"Access token is: %@", accessToken);
+    [[EBMovesService sharedService] requestAccessWithCompletionBlock:^(void) {
+        DLog(@"Access OK");
     }];
     
     return !!authCode;

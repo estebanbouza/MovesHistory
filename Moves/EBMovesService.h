@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class VOUserProfile;
+
 @interface EBMovesService : NSObject
 
 typedef NS_ENUM(NSInteger, MVAuthScope) {
@@ -15,7 +17,7 @@ typedef NS_ENUM(NSInteger, MVAuthScope) {
     MVAuthLocationScope     = 1 << 2
 };
 
-typedef void (^MVRequestAccessCompletionBlock)(NSString *accessToken);
+typedef void (^MVRequestAccessCompletionBlock)(void);
 
 #pragma mark - Lifecycle
 + (EBMovesService *)sharedService;
@@ -28,5 +30,8 @@ typedef void (^MVRequestAccessCompletionBlock)(NSString *accessToken);
 - (void)storeAuthCode:(NSString *)authCode;
 
 - (void)requestAccessWithCompletionBlock:(MVRequestAccessCompletionBlock)completionBlock;
+
+#pragma mark - Services
+- (void)requestUserProfileWithCompletionBlock:(void(^)(VOUserProfile *userProfile))userProfileBlock;
 
 @end

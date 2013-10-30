@@ -9,6 +9,10 @@
 #import "EBMovesService.h"
 #import "EBMovesConfiguration.h"
 
+#import "VOUserProfile.h"
+
+#import "EBAppDelegate.h"
+
 @interface EBMovesService ()
 
 @property (nonatomic, strong) NSString *authCode;
@@ -141,7 +145,7 @@
         self.accessToken = [responseObject objectForKey:@"access_token"];
         self.refreshToken = [responseObject objectForKey:@"response_token"];
         
-        [self requestUserProfile];
+        completionBlock();
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         DLog(@"The error was: %@", error);
@@ -150,15 +154,26 @@
     [operation start];
 }
 
-- (void)requestUserProfile {
+
+- (void)requestUserProfileWithCompletionBlock:(void(^)(VOUserProfile *userProfile))userProfileBlock {
+    
     AFHTTPSessionManager *manager = [self authHTTPSessionManager];
     
     [manager GET:@"user/profile" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        DLog(@"%@", responseObject);
+        
+        VOUserProfile *userProfile = [NSEntityDescription insertNewObjectForEntityForName:@"VOUserProfile"
+                                                                   inManagedObjectContext:[((EBAppDelegate *)[UIApplication sharedApplication].delegate) managedObjectContext]];
+        [userProfile updateWithDictionary:responseObject];
+        
+        [(EBAppDelegate *)[UIApplication sharedApplication].delegate saveContext];
+        userProfileBlock(userProfile);
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         DLog(@"%@", error);
     }];
+
 }
+
 
 @end
 
