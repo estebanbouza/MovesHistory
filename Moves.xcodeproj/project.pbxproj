@@ -10,6 +10,7 @@
 		5B091A3F180B4EBD00E5F051 /* EBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B091A3E180B4EBD00E5F051 /* EBMainViewController.m */; };
 		5B091A44180B535500E5F051 /* EBMovesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B091A43180B535500E5F051 /* EBMovesService.m */; };
 		5B85EE241821B65E0028BB75 /* VOUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B85EE231821B65E0028BB75 /* VOUserProfile.m */; };
+		5B85EE281821BCC00028BB75 /* NSDictionary+EB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B85EE271821BCC00028BB75 /* NSDictionary+EB.m */; };
 		5BF87043180B4AE9007D5994 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF87042180B4AE9007D5994 /* Foundation.framework */; };
 		5BF87045180B4AE9007D5994 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF87044180B4AE9007D5994 /* CoreGraphics.framework */; };
 		5BF87047180B4AE9007D5994 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF87046180B4AE9007D5994 /* UIKit.framework */; };
@@ -46,6 +47,8 @@
 		5B245FE0181479C90052804B /* EBMovesConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EBMovesConfiguration.h; sourceTree = "<group>"; };
 		5B85EE221821B65E0028BB75 /* VOUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOUserProfile.h; sourceTree = "<group>"; };
 		5B85EE231821B65E0028BB75 /* VOUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOUserProfile.m; sourceTree = "<group>"; };
+		5B85EE261821BCC00028BB75 /* NSDictionary+EB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EB.h"; sourceTree = "<group>"; };
+		5B85EE271821BCC00028BB75 /* NSDictionary+EB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EB.m"; sourceTree = "<group>"; };
 		5BF8703F180B4AE9007D5994 /* Moves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moves.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF87042180B4AE9007D5994 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5BF87044180B4AE9007D5994 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,9 +118,19 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		5B85EE251821BC980028BB75 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5B85EE261821BCC00028BB75 /* NSDictionary+EB.h */,
+				5B85EE271821BCC00028BB75 /* NSDictionary+EB.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		5BF87036180B4AE9007D5994 = {
 			isa = PBXGroup;
 			children = (
+				5B85EE251821BC980028BB75 /* Categories */,
 				5BF8704A180B4AE9007D5994 /* Moves */,
 				5BF87067180B4AE9007D5994 /* MovesTests */,
 				5BF87041180B4AE9007D5994 /* Frameworks */,
@@ -328,6 +341,7 @@
 				5B091A44180B535500E5F051 /* EBMovesService.m in Sources */,
 				5BF87058180B4AE9007D5994 /* Moves.xcdatamodeld in Sources */,
 				5BF87051180B4AE9007D5994 /* main.m in Sources */,
+				5B85EE281821BCC00028BB75 /* NSDictionary+EB.m in Sources */,
 				5BF87055180B4AE9007D5994 /* EBAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
