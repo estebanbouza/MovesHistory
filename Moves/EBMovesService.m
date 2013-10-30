@@ -43,6 +43,7 @@
 
 #pragma mark - Utils
 
+
 + (NSString *)descriptionForScope:(MVAuthScope)scope {
     NSString *desc = [NSString string];
     
@@ -59,7 +60,13 @@
     return desc;
 }
 
+- (NSString *)redirectURI {
+    return @"ebmoves://logincallback";
+}
+
+
 #pragma mark - URLs
+
 - (NSURL *)authBaseURL {
     return [NSURL URLWithString:@"https://api.moves-app.com/oauth/v1"];
 }
@@ -80,18 +87,6 @@
     return url;
 }
 
-- (NSString *)requestAccessTokenURLWithAuthCode:(NSString *)authCode
-                                    redirectURI:(NSString *)redirectURI
-{
-    /*
-     https://api.moves-app.com/oauth/v1/access_token?grant_type=authorization_code&code=<code>&client_id=<client_id>&client_secret=<client_secret>&redirect_uri=<redirect_uri>
-     */
-    NSString *urlString = [NSString stringWithFormat:@"https://api.moves-app.com/oauth/v1/access_token?grant_type=authorization_code&code=%@&client_id=%@&client_secret=%@&redirect_uri=%@", authCode, MOVES_CLIENT_ID, MOVES_CLIENT_SECRET, redirectURI];
-    
-    return urlString;
-}
-
-
 
 #pragma mark - Services
 #pragma mark Auth
@@ -105,18 +100,25 @@
 }
 
 - (void)authenticate {
-    [self authenticateWithRedirectURI:@"ebmoves://asdf" scope:MVAuthLocationScope | MVAuthActivityScope];
+    [self authenticateWithRedirectURI:[self redirectURI] scope:MVAuthLocationScope | MVAuthActivityScope];
 }
 
 - (void)storeAuthCode:(NSString *)authCode {
     self.authCode = authCode;
 }
 
+
 - (void)requestAccessWithCompletionBlock:(MVRequestAccessCompletionBlock)completionBlock {
     
     AFHTTPRequestOperationManager *manager = [EBMovesService sharedHTTPRequestOperationManager];
     
-    AFHTTPRequestOperation * operation = [manager POST:[self requestAccessTokenURLWithAuthCode:self.authCode redirectURI:@"ebmoves://asdf"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *requestParameters = @{@"grant_type" : @"authorization_code",
+                                        @"code" : self.authCode,
+                                        @"client_id" : MOVES_CLIENT_ID,
+                                        @"client_secret" : MOVES_CLIENT_SECRET,
+                                        @"redirect_uri" : [self redirectURI]};
+    
+    AFHTTPRequestOperation * operation = [manager POST:@"https://api.moves-app.com/oauth/v1/access_token" parameters:requestParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         DLog(@"Response Object: %@", responseObject);
         
         
@@ -128,3 +130,6 @@
 }
 
 @end
+
+
+
