@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="VOActivity" representedClassName="VOActivity" syncable="YES">
+        <attribute name="activityType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="calories" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="steps" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOLocation" inverseName="activity" inverseEntity="VOLocation" syncable="YES"/>
+        <relationship name="segment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOStorylineSegment" inverseName="activities" inverseEntity="VOStorylineSegment" syncable="YES"/>
+    </entity>
+    <entity name="VOLocation" representedClassName="VOLocation" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOActivity" inverseName="location" inverseEntity="VOActivity" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOPlace" inverseName="location" inverseEntity="VOPlace" syncable="YES"/>
+    </entity>
+    <entity name="VOPlace" representedClassName="VOPlace" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOLocation" inverseName="place" inverseEntity="VOLocation" syncable="YES"/>
+        <relationship name="segment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOStorylineSegment" inverseName="places" inverseEntity="VOStorylineSegment" syncable="YES"/>
+    </entity>
+    <entity name="VOStoryline" representedClassName="VOStoryline" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="segments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VOStorylineSegment" inverseName="storyline" inverseEntity="VOStorylineSegment" syncable="YES"/>
+        <relationship name="userProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOUserProfile" inverseName="storylines" inverseEntity="VOUserProfile" syncable="YES"/>
+    </entity>
+    <entity name="VOStorylineSegment" representedClassName="VOSegment" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VOActivity" inverseName="segment" inverseEntity="VOActivity" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VOPlace" inverseName="segment" inverseEntity="VOPlace" syncable="YES"/>
+        <relationship name="storyline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOStoryline" inverseName="segments" inverseEntity="VOStoryline" syncable="YES"/>
+    </entity>
     <entity name="VOUserProfile" representedClassName="VOUserProfile" syncable="YES">
         <attribute name="caloriesAvailable" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="firstDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="storylines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VOStoryline" inverseName="userProfile" inverseEntity="VOStoryline" syncable="YES"/>
     </entity>
     <elements>
-        <element name="VOUserProfile" positionX="-63" positionY="-612" width="128" height="88"/>
+        <element name="VOActivity" positionX="108" positionY="-522" width="128" height="178"/>
+        <element name="VOLocation" positionX="214" positionY="-288" width="128" height="118"/>
+        <element name="VOPlace" positionX="295" positionY="-531" width="128" height="88"/>
+        <element name="VOStoryline" positionX="7" positionY="-709" width="128" height="88"/>
+        <element name="VOStorylineSegment" positionX="205" positionY="-738" width="128" height="133"/>
+        <element name="VOUserProfile" positionX="-216" positionY="-720" width="128" height="103"/>
     </elements>
 </model>
