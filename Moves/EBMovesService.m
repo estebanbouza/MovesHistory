@@ -155,18 +155,18 @@
 }
 
 
-- (void)requestUserProfileWithCompletionBlock:(void(^)(VOUserProfile *userProfile))userProfileBlock {
+- (void)requestUserProfileWithCompletionBlock:(void(^)(VOUserProfile *userProfile))completionBlock {
     
-    AFHTTPSessionManager *manager = [self authHTTPSessionManager];
+    AFHTTPSessionManager *authManager = [self authHTTPSessionManager];
     
-    [manager GET:@"user/profile" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [authManager GET:@"user/profile" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         VOUserProfile *userProfile = [NSEntityDescription insertNewObjectForEntityForName:@"VOUserProfile"
                                                                    inManagedObjectContext:[((EBAppDelegate *)[UIApplication sharedApplication].delegate) managedObjectContext]];
         [userProfile updateWithDictionary:responseObject];
         
         [(EBAppDelegate *)[UIApplication sharedApplication].delegate saveContext];
-        userProfileBlock(userProfile);
+        completionBlock(userProfile);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         DLog(@"%@", error);

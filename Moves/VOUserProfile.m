@@ -7,7 +7,7 @@
 //
 
 #import "VOUserProfile.h"
-
+#import "NSDateFormatter+EB.h"
 
 @implementation VOUserProfile
 
@@ -17,6 +17,12 @@
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
     self.userID = [[dictionary objectForKey:@"userId"] stringValue];
+    self.caloriesAvailable = [dictionary objectForKey:@"caloriesAvailable"];
+    
+    NSDictionary *profileDictionary = [dictionary objectForKey:@"profile"];
+    
+    self.firstDate = [[NSDateFormatter movesDefaultFormatter] dateFromString:[profileDictionary objectForKey:@"firstDate"]];
+
 }
 
 @end
