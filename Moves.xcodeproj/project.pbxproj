@@ -34,6 +34,7 @@
 		5BFCF41E1825B27000CD51A8 /* VOLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF41D1825B27000CD51A8 /* VOLocation.m */; };
 		5BFCF4211825B27000CD51A8 /* VOUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF4201825B27000CD51A8 /* VOUserProfile.m */; };
 		5BFCF4241825B27000CD51A8 /* VOActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF4231825B27000CD51A8 /* VOActivity.m */; };
+		5BFCF4281825BA8900CD51A8 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF4271825BA8900CD51A8 /* NSDate-Utilities.m */; };
 		FBB4B974CE94444E84C163EF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A48F8B24674CA1A76A2D6D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,8 @@
 		5BFCF4201825B27000CD51A8 /* VOUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOUserProfile.m; sourceTree = "<group>"; };
 		5BFCF4221825B27000CD51A8 /* VOActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOActivity.h; sourceTree = "<group>"; };
 		5BFCF4231825B27000CD51A8 /* VOActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOActivity.m; sourceTree = "<group>"; };
+		5BFCF4261825BA8900CD51A8 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
+		5BFCF4271825BA8900CD51A8 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
 		95A48F8B24674CA1A76A2D6D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8F4085A8D342F7AECDD1BF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,18 +129,6 @@
 		5B091A3B180B4E5E00E5F051 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				5BFCF4221825B27000CD51A8 /* VOActivity.h */,
-				5BFCF4231825B27000CD51A8 /* VOActivity.m */,
-				5BFCF41F1825B27000CD51A8 /* VOUserProfile.h */,
-				5BFCF4201825B27000CD51A8 /* VOUserProfile.m */,
-				5BFCF41C1825B27000CD51A8 /* VOLocation.h */,
-				5BFCF41D1825B27000CD51A8 /* VOLocation.m */,
-				5BFCF4191825B26F00CD51A8 /* VOSegment.h */,
-				5BFCF41A1825B27000CD51A8 /* VOSegment.m */,
-				5BFCF4161825B26F00CD51A8 /* VOPlace.h */,
-				5BFCF4171825B26F00CD51A8 /* VOPlace.m */,
-				5BFCF4131825B26F00CD51A8 /* VOStoryline.h */,
-				5BFCF4141825B26F00CD51A8 /* VOStoryline.m */,
 				5B091A42180B535500E5F051 /* EBMovesService.h */,
 				5B091A43180B535500E5F051 /* EBMovesService.m */,
 			);
@@ -156,6 +147,8 @@
 		5B85EE251821BC980028BB75 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				5BFCF4261825BA8900CD51A8 /* NSDate-Utilities.h */,
+				5BFCF4271825BA8900CD51A8 /* NSDate-Utilities.m */,
 				5B85EE261821BCC00028BB75 /* NSDictionary+EB.h */,
 				5B85EE271821BCC00028BB75 /* NSDictionary+EB.m */,
 				5BFCF3DE1825A2AC00CD51A8 /* NSDateFormatter+EB.h */,
@@ -205,6 +198,7 @@
 			children = (
 				5B245FE0181479C90052804B /* EBMovesConfiguration.h */,
 				5B091A3C180B4EA900E5F051 /* View Controllers */,
+				5BFCF4251825B5EC00CD51A8 /* Model */,
 				5B091A3B180B4E5E00E5F051 /* Service */,
 				5BF87053180B4AE9007D5994 /* EBAppDelegate.h */,
 				5BF87054180B4AE9007D5994 /* EBAppDelegate.m */,
@@ -254,6 +248,25 @@
 				5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */,
 			);
 			path = Libraries;
+			sourceTree = "<group>";
+		};
+		5BFCF4251825B5EC00CD51A8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BFCF4221825B27000CD51A8 /* VOActivity.h */,
+				5BFCF4231825B27000CD51A8 /* VOActivity.m */,
+				5BFCF41F1825B27000CD51A8 /* VOUserProfile.h */,
+				5BFCF4201825B27000CD51A8 /* VOUserProfile.m */,
+				5BFCF41C1825B27000CD51A8 /* VOLocation.h */,
+				5BFCF41D1825B27000CD51A8 /* VOLocation.m */,
+				5BFCF4191825B26F00CD51A8 /* VOSegment.h */,
+				5BFCF41A1825B27000CD51A8 /* VOSegment.m */,
+				5BFCF4161825B26F00CD51A8 /* VOPlace.h */,
+				5BFCF4171825B26F00CD51A8 /* VOPlace.m */,
+				5BFCF4131825B26F00CD51A8 /* VOStoryline.h */,
+				5BFCF4141825B26F00CD51A8 /* VOStoryline.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +405,7 @@
 				5B091A44180B535500E5F051 /* EBMovesService.m in Sources */,
 				5BFCF3F11825ADD100CD51A8 /* VOSegment.m in Sources */,
 				5BFCF41E1825B27000CD51A8 /* VOLocation.m in Sources */,
+				5BFCF4281825BA8900CD51A8 /* NSDate-Utilities.m in Sources */,
 				5BFCF4151825B26F00CD51A8 /* VOStoryline.m in Sources */,
 				5BF87058180B4AE9007D5994 /* Moves.xcdatamodeld in Sources */,
 				5BFCF3E01825A2AC00CD51A8 /* NSDateFormatter+EB.m in Sources */,

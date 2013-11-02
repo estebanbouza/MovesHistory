@@ -8,6 +8,7 @@
 
 #import "EBMovesService.h"
 #import "EBMovesConfiguration.h"
+#import "NSDateFormatter+EB.h"
 
 #import "VOUserProfile.h"
 
@@ -56,7 +57,7 @@
         sessionConfiguration.HTTPAdditionalHeaders = @{@"Authorization" : [NSString stringWithFormat:@"Bearer %@", self.accessToken]};
         
         sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.moves-app.com/api/v1"] sessionConfiguration:sessionConfiguration];
-
+        
     });
     
     return sessionManager;
@@ -171,11 +172,40 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         DLog(@"%@", error);
     }];
-
+    
 }
 
 
+- (void)requestStorylineForDate:(NSDate *)date
+                completionBlock:(void (^)(VOStoryline *))completionBlock
+                     errorBlock:(MVRequestErrorBlock)erroBlock
+{
+    
+    NSString *url = @"user/storyline/daily/";
+    url = [url stringByAppendingString:[[NSDateFormatter movesDefaultDateFormatter] stringFromDate:date]];
+    
+    AFHTTPSessionManager *authManager = [self authHTTPSessionManager];
+    
+    [authManager GET:url
+          parameters:@{@"trackPoints" : @"true"}
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 DLog(@"Response Object %@", responseObject);
+                 
+             }
+     
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 DLog(@"%@", error);
+                 erroBlock(error);
+             }];
+    
+}
+
+
+
 @end
+
+
+
 
 
 

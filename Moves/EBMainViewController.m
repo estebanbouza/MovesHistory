@@ -8,12 +8,14 @@
 
 #import "EBMainViewController.h"
 #import "EBMovesService.h"
+#import "NSDate-Utilities.h"
 
 #import "VOUserProfile.h"
 
 @interface EBMainViewController () {
     UIButton *_loginButton;
     UIButton *_syncButton;
+    UIButton *_storylineButton;
 }
 
 
@@ -28,13 +30,21 @@
 
     _loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    _loginButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_loginButton addTarget:self action:@selector(loginButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_loginButton];
     
     _syncButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_syncButton setTitle:@"Sync" forState:UIControlStateNormal];
+    _syncButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_syncButton addTarget:self action:@selector(syncButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_syncButton];
+    
+    _storylineButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_storylineButton setTitle:@"Storyline" forState:UIControlStateNormal];
+    _storylineButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [_storylineButton addTarget:self action:@selector(storylineButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_storylineButton];
     
     [self.view setNeedsUpdateConstraints];
 }
@@ -45,7 +55,7 @@
     _loginButton.translatesAutoresizingMaskIntoConstraints = NO;
     _syncButton.translatesAutoresizingMaskIntoConstraints = NO;
     
-    NSArray *buttonConstraintsH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_loginButton(300)]-[_syncButton(300)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:NSDictionaryOfVariableBindings(_loginButton, _syncButton)];
+    NSArray *buttonConstraintsH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_loginButton(>=100)]-[_syncButton(>=100)]-[_storylineButton(>=100)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:NSDictionaryOfVariableBindings(_loginButton, _syncButton, _storylineButton)];
 
     NSArray *buttonConstraintsV = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_loginButton]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_loginButton)];
     
@@ -70,9 +80,22 @@
     
     [service requestUserProfileWithCompletionBlock:^(VOUserProfile *userProfile) {
         DLog(@"User Profile: %@", userProfile);
-//        DLog(@"User profile is: %@, first date: %@", userProfile.userID, userProfile.firstDate);
     }];
     
+}
+
+- (void)storylineButtonPressed:(id)sender {
+    DLog(@"");
+    NSDate *yesterday = [NSDate dateYesterday];
+    
+    EBMovesService *service = [EBMovesService sharedService];
+    
+    [service requestStorylineForDate:yesterday
+                     completionBlock:^(VOStoryline *storyline) {
+                         DLog(@"");
+                     } errorBlock:^(NSError *error) {
+                         DLog(@"");
+                     }];
 }
 
 #pragma mark - Public
