@@ -27,7 +27,7 @@
 		5BF8706C180B4AE9007D5994 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF8706A180B4AE9007D5994 /* InfoPlist.strings */; };
 		5BF8706E180B4AE9007D5994 /* MovesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF8706D180B4AE9007D5994 /* MovesTests.m */; };
 		5BFCF3E01825A2AC00CD51A8 /* NSDateFormatter+EB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3DF1825A2AC00CD51A8 /* NSDateFormatter+EB.m */; };
-		5BFCF3E41825A4B700CD51A8 /* EBDescribedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3E31825A4B700CD51A8 /* EBDescribedObject.m */; };
+		5BFCF3E81825A53300CD51A8 /* EBDescribedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */; };
 		FBB4B974CE94444E84C163EF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A48F8B24674CA1A76A2D6D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,8 +71,8 @@
 		5BF8706D180B4AE9007D5994 /* MovesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovesTests.m; sourceTree = "<group>"; };
 		5BFCF3DE1825A2AC00CD51A8 /* NSDateFormatter+EB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+EB.h"; sourceTree = "<group>"; };
 		5BFCF3DF1825A2AC00CD51A8 /* NSDateFormatter+EB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+EB.m"; sourceTree = "<group>"; };
-		5BFCF3E21825A4B700CD51A8 /* EBDescribedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBDescribedObject.h; sourceTree = "<group>"; };
-		5BFCF3E31825A4B700CD51A8 /* EBDescribedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBDescribedObject.m; sourceTree = "<group>"; };
+		5BFCF3E61825A53300CD51A8 /* EBDescribedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBDescribedObject.h; sourceTree = "<group>"; };
+		5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBDescribedObject.m; sourceTree = "<group>"; };
 		95A48F8B24674CA1A76A2D6D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8F4085A8D342F7AECDD1BF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,12 +133,13 @@
 				5BFCF3DF1825A2AC00CD51A8 /* NSDateFormatter+EB.m */,
 			);
 			name = Categories;
+			path = Moves;
 			sourceTree = "<group>";
 		};
 		5BF87036180B4AE9007D5994 = {
 			isa = PBXGroup;
 			children = (
-				5BFCF3E11825A4A600CD51A8 /* Libraries */,
+				5BFCF3E51825A53300CD51A8 /* Libraries */,
 				5B85EE251821BC980028BB75 /* Categories */,
 				5BF8704A180B4AE9007D5994 /* Moves */,
 				5BF87067180B4AE9007D5994 /* MovesTests */,
@@ -214,13 +215,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5BFCF3E11825A4A600CD51A8 /* Libraries */ = {
+		5BFCF3E51825A53300CD51A8 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				5BFCF3E21825A4B700CD51A8 /* EBDescribedObject.h */,
-				5BFCF3E31825A4B700CD51A8 /* EBDescribedObject.m */,
+				5BFCF3E61825A53300CD51A8 /* EBDescribedObject.h */,
+				5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */,
 			);
-			name = Libraries;
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,7 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B091A3F180B4EBD00E5F051 /* EBMainViewController.m in Sources */,
-				5BFCF3E41825A4B700CD51A8 /* EBDescribedObject.m in Sources */,
+				5BFCF3E81825A53300CD51A8 /* EBDescribedObject.m in Sources */,
 				5B85EE241821B65E0028BB75 /* VOUserProfile.m in Sources */,
 				5B091A44180B535500E5F051 /* EBMovesService.m in Sources */,
 				5BF87058180B4AE9007D5994 /* Moves.xcdatamodeld in Sources */,
