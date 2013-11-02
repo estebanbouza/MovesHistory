@@ -17,11 +17,11 @@
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
     self.userID = [[dictionary objectForKey:@"userId"] stringValue];
-    self.caloriesAvailable = [dictionary objectForKey:@"caloriesAvailable"];
-    
+   
     NSDictionary *profileDictionary = [dictionary objectForKey:@"profile"];
     
-    self.firstDate = [[NSDateFormatter movesDefaultFormatter] dateFromString:[profileDictionary objectForKey:@"firstDate"]];
+    self.caloriesAvailable = [profileDictionary objectForKey:@"caloriesAvailable"];
+    self.firstDate = [[NSDateFormatter movesDefaultDateFormatter] dateFromString:[profileDictionary objectForKey:@"firstDate"]];
 
 }
 

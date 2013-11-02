@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "EBDescribedObject.h"
 
-
-@interface VOUserProfile : NSManagedObject
+@interface VOUserProfile : EBDescribedObject
 
 @property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) NSDate * firstDate;

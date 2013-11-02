@@ -10,6 +10,6 @@
 
 @interface NSDateFormatter (EB)
 
-+ (NSDateFormatter const *)movesDefaultFormatter;
++ (NSDateFormatter const *)movesDefaultDateFormatter;
 
 @end

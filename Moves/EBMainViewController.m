@@ -45,7 +45,8 @@
     _loginButton.translatesAutoresizingMaskIntoConstraints = NO;
     _syncButton.translatesAutoresizingMaskIntoConstraints = NO;
     
-    NSArray *buttonConstraintsH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_loginButton][_syncButton]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:NSDictionaryOfVariableBindings(_loginButton, _syncButton)];
+    NSArray *buttonConstraintsH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_loginButton(300)]-[_syncButton(300)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:NSDictionaryOfVariableBindings(_loginButton, _syncButton)];
+
     NSArray *buttonConstraintsV = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_loginButton]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_loginButton)];
     
     [self.view addConstraints:buttonConstraintsH];
@@ -68,7 +69,8 @@
     EBMovesService *service = [EBMovesService sharedService];
     
     [service requestUserProfileWithCompletionBlock:^(VOUserProfile *userProfile) {
-        DLog(@"User profile is: %@, first date: %@", userProfile.userID, userProfile.firstDate);
+        DLog(@"User Profile: %@", userProfile);
+//        DLog(@"User profile is: %@, first date: %@", userProfile.userID, userProfile.firstDate);
     }];
     
 }

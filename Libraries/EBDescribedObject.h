@@ -13,7 +13,7 @@
  When calling -description in a EBDescribedObject subclass, all the properties will be printed in the console. See -description.
  
  */
-@interface EBDescribedObject : NSObject
+@interface EBDescribedObject : NSManagedObject
 
 /** The description value of all the properties.
  

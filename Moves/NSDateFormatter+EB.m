@@ -10,13 +10,13 @@
 
 @implementation NSDateFormatter (EB)
 
-+ (NSDateFormatter const *)movesDefaultFormatter {
++ (NSDateFormatter const *)movesDefaultDateFormatter {
 
     static NSDateFormatter const *dateFormatter;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"yyyMMdd";
+        dateFormatter.dateFormat = @"yyyyMMdd";
     });
     
     return dateFormatter;

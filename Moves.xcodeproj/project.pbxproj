@@ -28,6 +28,7 @@
 		5BF8706E180B4AE9007D5994 /* MovesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF8706D180B4AE9007D5994 /* MovesTests.m */; };
 		5BFCF3E01825A2AC00CD51A8 /* NSDateFormatter+EB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3DF1825A2AC00CD51A8 /* NSDateFormatter+EB.m */; };
 		5BFCF3E81825A53300CD51A8 /* EBDescribedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */; };
+		5BFCF3EB1825A59D00CD51A8 /* EBRuntimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3EA1825A59D00CD51A8 /* EBRuntimeUtils.m */; };
 		FBB4B974CE94444E84C163EF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A48F8B24674CA1A76A2D6D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		5BFCF3DF1825A2AC00CD51A8 /* NSDateFormatter+EB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+EB.m"; sourceTree = "<group>"; };
 		5BFCF3E61825A53300CD51A8 /* EBDescribedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBDescribedObject.h; sourceTree = "<group>"; };
 		5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBDescribedObject.m; sourceTree = "<group>"; };
+		5BFCF3E91825A59D00CD51A8 /* EBRuntimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBRuntimeUtils.h; sourceTree = "<group>"; };
+		5BFCF3EA1825A59D00CD51A8 /* EBRuntimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBRuntimeUtils.m; sourceTree = "<group>"; };
 		95A48F8B24674CA1A76A2D6D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8F4085A8D342F7AECDD1BF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,6 +221,8 @@
 		5BFCF3E51825A53300CD51A8 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5BFCF3E91825A59D00CD51A8 /* EBRuntimeUtils.h */,
+				5BFCF3EA1825A59D00CD51A8 /* EBRuntimeUtils.m */,
 				5BFCF3E61825A53300CD51A8 /* EBDescribedObject.h */,
 				5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */,
 			);
@@ -364,6 +369,7 @@
 				5BF87051180B4AE9007D5994 /* main.m in Sources */,
 				5B85EE281821BCC00028BB75 /* NSDictionary+EB.m in Sources */,
 				5BF87055180B4AE9007D5994 /* EBAppDelegate.m in Sources */,
+				5BFCF3EB1825A59D00CD51A8 /* EBRuntimeUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
