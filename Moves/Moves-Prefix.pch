@@ -16,8 +16,15 @@
     #import <CoreData/CoreData.h>
 
     #import <AFNetworking/AFNetworking.h>
+
+    // Categories
+    #import "NSDate-Utilities.h"
+    #import "NSDateFormatter+EB.h"
+    #import "NSDictionary+EB.h"
+
 #endif
 
+#define MVManagedObjectContext [(EBAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext]
 
 // Logging
 

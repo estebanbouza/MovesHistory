@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VOValueObject.h"
 
 @class VOActivity, VOPlace, VOStoryline;
 
-@interface VOSegment : NSManagedObject
+@interface VOSegment : VOValueObject
 
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSDate * startTime;

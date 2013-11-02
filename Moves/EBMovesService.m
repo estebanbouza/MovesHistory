@@ -11,6 +11,7 @@
 #import "NSDateFormatter+EB.h"
 
 #import "VOUserProfile.h"
+#import "VOStoryline.h"
 
 #import "EBAppDelegate.h"
 
@@ -191,6 +192,11 @@
              success:^(NSURLSessionDataTask *task, id responseObject) {
                  DLog(@"Response Object %@", responseObject);
                  
+                 VOStoryline *storyline = [NSEntityDescription insertNewObjectForEntityForName:[[VOStoryline class] description] inManagedObjectContext:MVManagedObjectContext];
+                 
+                 DLog(@"Parsed storyline: %@", storyline);
+                 
+                 completionBlock(storyline);
              }
      
              failure:^(NSURLSessionDataTask *task, NSError *error) {

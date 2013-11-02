@@ -35,6 +35,7 @@
 		5BFCF4211825B27000CD51A8 /* VOUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF4201825B27000CD51A8 /* VOUserProfile.m */; };
 		5BFCF4241825B27000CD51A8 /* VOActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF4231825B27000CD51A8 /* VOActivity.m */; };
 		5BFCF4281825BA8900CD51A8 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF4271825BA8900CD51A8 /* NSDate-Utilities.m */; };
+		5BFCF42B1825BCDD00CD51A8 /* VOValueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF42A1825BCDD00CD51A8 /* VOValueObject.m */; };
 		FBB4B974CE94444E84C163EF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A48F8B24674CA1A76A2D6D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,8 @@
 		5BFCF4231825B27000CD51A8 /* VOActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOActivity.m; sourceTree = "<group>"; };
 		5BFCF4261825BA8900CD51A8 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		5BFCF4271825BA8900CD51A8 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		5BFCF4291825BCDD00CD51A8 /* VOValueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOValueObject.h; sourceTree = "<group>"; };
+		5BFCF42A1825BCDD00CD51A8 /* VOValueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOValueObject.m; sourceTree = "<group>"; };
 		95A48F8B24674CA1A76A2D6D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8F4085A8D342F7AECDD1BF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,18 +256,20 @@
 		5BFCF4251825B5EC00CD51A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5BFCF4291825BCDD00CD51A8 /* VOValueObject.h */,
+				5BFCF42A1825BCDD00CD51A8 /* VOValueObject.m */,
 				5BFCF4221825B27000CD51A8 /* VOActivity.h */,
 				5BFCF4231825B27000CD51A8 /* VOActivity.m */,
-				5BFCF41F1825B27000CD51A8 /* VOUserProfile.h */,
-				5BFCF4201825B27000CD51A8 /* VOUserProfile.m */,
 				5BFCF41C1825B27000CD51A8 /* VOLocation.h */,
 				5BFCF41D1825B27000CD51A8 /* VOLocation.m */,
-				5BFCF4191825B26F00CD51A8 /* VOSegment.h */,
-				5BFCF41A1825B27000CD51A8 /* VOSegment.m */,
 				5BFCF4161825B26F00CD51A8 /* VOPlace.h */,
 				5BFCF4171825B26F00CD51A8 /* VOPlace.m */,
+				5BFCF4191825B26F00CD51A8 /* VOSegment.h */,
+				5BFCF41A1825B27000CD51A8 /* VOSegment.m */,
 				5BFCF4131825B26F00CD51A8 /* VOStoryline.h */,
 				5BFCF4141825B26F00CD51A8 /* VOStoryline.m */,
+				5BFCF41F1825B27000CD51A8 /* VOUserProfile.h */,
+				5BFCF4201825B27000CD51A8 /* VOUserProfile.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 				5BF87058180B4AE9007D5994 /* Moves.xcdatamodeld in Sources */,
 				5BFCF3E01825A2AC00CD51A8 /* NSDateFormatter+EB.m in Sources */,
 				5BF87051180B4AE9007D5994 /* main.m in Sources */,
+				5BFCF42B1825BCDD00CD51A8 /* VOValueObject.m in Sources */,
 				5BFCF4241825B27000CD51A8 /* VOActivity.m in Sources */,
 				5B85EE281821BCC00028BB75 /* NSDictionary+EB.m in Sources */,
 				5BF87055180B4AE9007D5994 /* EBAppDelegate.m in Sources */,

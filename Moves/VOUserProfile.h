@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VOValueObject.h"
 
 @class VOStoryline;
 
-@interface VOUserProfile : NSManagedObject
+@interface VOUserProfile : VOValueObject
 
 @property (nonatomic, retain) NSNumber * caloriesAvailable;
 @property (nonatomic, retain) NSDate * firstDate;
@@ -25,7 +26,5 @@
 - (void)removeStorylinesObject:(VOStoryline *)value;
 - (void)addStorylines:(NSSet *)values;
 - (void)removeStorylines:(NSSet *)values;
-
-- (void)updateWithDictionary:(NSDictionary *)dictionary;
 
 @end

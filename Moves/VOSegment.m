@@ -21,4 +21,9 @@
 @dynamic places;
 @dynamic activities;
 
+- (void)updateWithDictionary:(NSDictionary *)dictionary {
+    
+}
+
+
 @end

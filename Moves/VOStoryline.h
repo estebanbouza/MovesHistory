@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VOValueObject.h"
 
 @class VOSegment, VOUserProfile;
 
-@interface VOStoryline : NSManagedObject
+@interface VOStoryline : VOValueObject
 
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSSet *segments;
