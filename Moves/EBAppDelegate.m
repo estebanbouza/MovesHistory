@@ -23,6 +23,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSSetUncaughtExceptionHandler(&myuncaughtExceptionHandler);
+    
     EBMovesService *movesService = [EBMovesService sharedService];
     movesService.movesClientID = MOVES_CLIENT_ID;
     movesService.movesClientSecret = MOVES_CLIENT_SECRET;
@@ -37,6 +39,12 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+void myuncaughtExceptionHandler(NSException *exception) {
+    // Internal error reporting
+    DLog(@"CRASH: %@", exception);
+    DLog(@"Stack Trace: %@", [exception callStackSymbols]);
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
@@ -70,7 +78,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    [[EBModel sharedModel] saveContext];
 }
 
 

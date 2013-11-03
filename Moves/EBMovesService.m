@@ -14,6 +14,14 @@
 
 #import "EBAppDelegate.h"
 
+@class VOUserProfile, VOStoryline;
+
+static NSString *kKeychainAuthenticationKey = @"auth_key";
+static NSString *kKeychainAccessTokenKey = @"access_token";
+static NSString *kKeychainAccessTokenExpirationDateKey = @"access_token_expiration";
+static NSString *kKeychainRefreshTokenKey = @"refresh_token";
+
+
 @interface EBMovesService ()
 
 @property (nonatomic, strong) NSString *authCode;
@@ -109,6 +117,10 @@
 #pragma mark - Services
 #pragma mark Auth
 
+- (void)storeAuthCode:(NSString *)authCode {
+    self.authCode = authCode;
+}
+
 - (BOOL)authenticateWithRedirectURI:(NSString *)redirectURI
                               scope:(MVAuthScope)scope {
     
@@ -121,10 +133,55 @@
     [self authenticateWithRedirectURI:self.movesRedirectURI scope:MVAuthLocationScope | MVAuthActivityScope];
 }
 
-- (void)storeAuthCode:(NSString *)authCode {
-    self.authCode = authCode;
+
+- (NSMutableData *)dictionaryDataForExpirationDate:(NSDate *)expirationDate refreshToken:(NSString *)refreshToken accessToken:(NSString *)accessToken {
+    NSDictionary *storeDict = @{kKeychainAccessTokenKey : accessToken,
+                                kKeychainRefreshTokenKey : refreshToken,
+                                kKeychainAccessTokenExpirationDateKey : expirationDate};
+    NSMutableData *storeData = [NSMutableData new];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:storeData];
+    [archiver encodeObject:storeDict forKey:kKeychainAuthenticationKey];
+    [archiver finishEncoding];
+    return storeData;
 }
 
+- (void)storeAuthData:(NSMutableData *)storeData {
+    NSDictionary *queryDeletePreviousAccessToken = @{(__bridge id)kSecClass : (__bridge id)kSecClassKey};
+    
+    OSStatus status = SecItemDelete((__bridge CFDictionaryRef)queryDeletePreviousAccessToken);
+    if (status != noErr) {
+        NSAssert(0, @"Error deleting from keychain");
+    }
+    
+    NSDictionary *accessTokenDict = @{(__bridge id)kSecClass : (__bridge id)kSecClassKey,
+                                      (__bridge id)kSecAttrLabel : kKeychainAuthenticationKey,
+                                      (__bridge id)kSecValueData : storeData
+                                      };
+    
+    status = SecItemAdd((__bridge CFDictionaryRef)accessTokenDict, NULL);
+    if (status != noErr) {
+        NSAssert(0, @"Error storing in keychain");
+    }
+}
+
+- (NSDictionary *)cachedAuthData {
+    NSDictionary *queryDict = @{(__bridge id)kSecClass : (__bridge id)kSecClassKey,
+                                (__bridge id)kSecAttrLabel : kKeychainAccessTokenKey,
+                                (__bridge id)kSecReturnData : (id)kCFBooleanTrue };
+    CFDataRef dataRef;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)queryDict, (CFTypeRef *)&dataRef);
+    NSDictionary *authData = nil;
+    
+    if (status == noErr) {
+        NSData *data = (__bridge NSData *)dataRef;
+        
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        authData = [unarchiver decodeObjectForKey:kKeychainAuthenticationKey];
+        
+    }
+    
+    return authData;
+}
 
 - (void)requestAccessWithCompletionBlock:(MVRequestAccessCompletionBlock)completionBlock {
     
@@ -139,8 +196,14 @@
     AFHTTPRequestOperation * operation = [manager POST:@"https://api.moves-app.com/oauth/v1/access_token" parameters:requestParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         DLog(@"Response Object: %@", responseObject);
         
-        self.accessToken = [responseObject objectOrNilForKey:@"access_token"];
-        self.refreshToken = [responseObject objectOrNilForKey:@"response_token"];
+        NSString *accessToken = [responseObject objectOrNilForKey:@"access_token"];
+        NSString *refreshToken = [responseObject objectOrNilForKey:@"refresh_token"];
+        NSDate *expirationDate = [NSDate dateWithTimeIntervalSinceNow:[[responseObject objectForKey:@"expires_in"] doubleValue]];
+        
+        NSMutableData *storeData;
+        storeData = [self dictionaryDataForExpirationDate:expirationDate refreshToken:refreshToken accessToken:accessToken];
+        
+        [self storeAuthData:storeData];
         
         completionBlock();
         
@@ -158,7 +221,7 @@
     
     [authManager GET:@"user/profile" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        VOUserProfile *userProfile = [NSEntityDescription insertNewObjectForEntityForName:@"VOUserProfile"
+        VOUserProfile *userProfile = [NSEntityDescription insertNewObjectForEntityForName:[[VOUserProfile class] description]
                                                                    inManagedObjectContext:MVManagedObjectContext];
         [userProfile updateWithDictionary:responseObject];
         

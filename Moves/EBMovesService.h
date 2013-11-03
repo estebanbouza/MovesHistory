@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class VOUserProfile, VOStoryline;
+#import "VOUserProfile.h"
 
 typedef NS_ENUM(NSInteger, MVAuthScope) {
     MVAuthActivityScope     = 1 << 1,
