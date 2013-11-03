@@ -36,7 +36,7 @@ typedef void (^MVRequestErrorBlock)(NSError *);
 - (void)requestUserProfileWithCompletionBlock:(void(^)(VOUserProfile *userProfile))userProfileBlock;
 
 - (void)requestStorylineForDate:(NSDate *)date
-         completionBlock:(void(^)(VOStoryline *storyline))completionBlock
+         completionBlock:(void(^)(NSArray *storylines))completionBlock
               errorBlock:(MVRequestErrorBlock)erroBlock;
 
 @end

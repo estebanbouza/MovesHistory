@@ -177,7 +177,7 @@
 
 
 - (void)requestStorylineForDate:(NSDate *)date
-                completionBlock:(void (^)(VOStoryline *))completionBlock
+                completionBlock:(void (^)(NSArray *))completionBlock
                      errorBlock:(MVRequestErrorBlock)erroBlock
 {
     
@@ -191,11 +191,17 @@
              success:^(NSURLSessionDataTask *task, id responseObject) {
                  DLog(@"Response Object %@", responseObject);
                  
-                 VOStoryline *storyline = [NSEntityDescription insertNewObjectForEntityForName:[[VOStoryline class] description] inManagedObjectContext:MVManagedObjectContext];
+                 NSMutableArray *storylines = [NSMutableArray new];
                  
-                 DLog(@"Parsed storyline: %@", storyline);
+                 for (NSDictionary *storylineDict in responseObject) {
+                     VOStoryline *storyline = [NSEntityDescription insertNewObjectForEntityForName:[[VOStoryline class] description] inManagedObjectContext:MVManagedObjectContext];
+                     [storyline updateWithDictionary:storylineDict];
+                     [storylines addObject:storyline];
+                 }
                  
-                 completionBlock(storyline);
+                 DLog(@"Parsed storyline: %@", storylines);
+                 
+                 completionBlock(storylines);
              }
      
              failure:^(NSURLSessionDataTask *task, NSError *error) {

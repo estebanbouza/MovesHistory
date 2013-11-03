@@ -108,7 +108,7 @@
     EBMovesService *service = [EBMovesService sharedService];
     
     [service requestStorylineForDate:yesterday
-                     completionBlock:^(VOStoryline *storyline) {
+                     completionBlock:^(NSArray *storylines) {
                          DLog(@"");
                      } errorBlock:^(NSError *error) {
                          DLog(@"");
