@@ -16,6 +16,8 @@
     UIButton *_loginButton;
     UIButton *_syncButton;
     UIButton *_storylineButton;
+    
+    NSMutableArray *_buttons;
 }
 
 
@@ -28,39 +30,54 @@
 {
     [super viewDidLoad];
 
-    _loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    _loginButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_loginButton addTarget:self action:@selector(loginButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_loginButton];
+    _buttons = [NSMutableArray new];
     
-    _syncButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_syncButton setTitle:@"Sync" forState:UIControlStateNormal];
-    _syncButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_syncButton addTarget:self action:@selector(syncButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_syncButton];
-    
-    _storylineButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_storylineButton setTitle:@"Storyline" forState:UIControlStateNormal];
-    _storylineButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_storylineButton addTarget:self action:@selector(storylineButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_storylineButton];
+    [self insertButtonWithTitle:@"Login" action:@selector(loginButtonPressed:)];
+    [self insertButtonWithTitle:@"Sync" action:@selector(syncButtonPressed:)];
+    [self insertButtonWithTitle:@"Storyline" action:@selector(storylineButtonPressed:)];
     
     [self.view setNeedsUpdateConstraints];
 }
 
+- (UIButton *)insertButtonWithTitle:(NSString *)title action:(SEL)target {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    [button addTarget:self action:target forControlEvents:UIControlEventTouchUpInside];
+    button.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:button];
+    [_buttons addObject:button];
+    
+    return button;
+}
+
 - (void)updateViewConstraints {
     [super updateViewConstraints];
-    
-    _loginButton.translatesAutoresizingMaskIntoConstraints = NO;
-    _syncButton.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    NSArray *buttonConstraintsH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_loginButton(>=100)]-[_syncButton(>=100)]-[_storylineButton(>=100)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:NSDictionaryOfVariableBindings(_loginButton, _syncButton, _storylineButton)];
 
-    NSArray *buttonConstraintsV = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_loginButton]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_loginButton)];
+    for (NSInteger i = 0; i < _buttons.count-1; i++) {
+        UIButton *btnA = _buttons[i];
+        UIButton *btnB = _buttons[i+1];
+        
+        NSLayoutConstraint *yCenterConstraint = [NSLayoutConstraint constraintWithItem:btnA attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:btnB attribute:NSLayoutAttributeCenterY multiplier:1. constant:0.];
+        
+        NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:btnA attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnB attribute:NSLayoutAttributeWidth multiplier:1. constant:0.];
+
+        NSLayoutConstraint *spacingConstraint = [NSLayoutConstraint constraintWithItem:btnB attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:btnA attribute:NSLayoutAttributeRight multiplier:1. constant:20.];
+        
+        [self.view addConstraint:widthConstraint];
+        [self.view addConstraint:spacingConstraint];
+        [self.view addConstraint:yCenterConstraint];
+    }
+
+    NSLayoutConstraint *yMiddleConstraint = [NSLayoutConstraint constraintWithItem:_buttons[0] attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1. constant:0.];
+    [self.view addConstraint:yMiddleConstraint];
     
-    [self.view addConstraints:buttonConstraintsH];
-    [self.view addConstraints:buttonConstraintsV];
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:_buttons[0] attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1. constant:20.];
+    [self.view addConstraint:leftConstraint];
+    
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:_buttons[_buttons.count - 1] attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1. constant:-20.];
+    [self.view addConstraint:rightConstraint];
+
 }
 
 
@@ -85,7 +102,7 @@
 }
 
 - (void)storylineButtonPressed:(id)sender {
-    DLog(@"");
+
     NSDate *yesterday = [NSDate dateYesterday];
     
     EBMovesService *service = [EBMovesService sharedService];

@@ -19,4 +19,14 @@
 @dynamic activity;
 @dynamic place;
 
+- (void)updateWithDictionary:(NSDictionary *)dictionary {
+    self.latitude = [dictionary objectOrNilForKey:@"lat"];
+    self.longitude = [dictionary objectOrNilForKey:@"lon"];
+    self.timestamp = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectOrNilForKey:@"time"]];
+}
+
+- (CLLocation *)location {
+    return [[CLLocation alloc] initWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
+}
+
 @end

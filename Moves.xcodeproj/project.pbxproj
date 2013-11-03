@@ -10,6 +10,7 @@
 		5B091A3F180B4EBD00E5F051 /* EBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B091A3E180B4EBD00E5F051 /* EBMainViewController.m */; };
 		5B091A44180B535500E5F051 /* EBMovesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B091A43180B535500E5F051 /* EBMovesService.m */; };
 		5B3C780C18265D45006838A6 /* VOStorylineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C780B18265D45006838A6 /* VOStorylineSegment.m */; };
+		5B3C780E18266024006838A6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3C780D18266024006838A6 /* CoreLocation.framework */; };
 		5B85EE281821BCC00028BB75 /* NSDictionary+EB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B85EE271821BCC00028BB75 /* NSDictionary+EB.m */; };
 		5BF87043180B4AE9007D5994 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF87042180B4AE9007D5994 /* Foundation.framework */; };
 		5BF87045180B4AE9007D5994 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF87044180B4AE9007D5994 /* CoreGraphics.framework */; };
@@ -58,6 +59,7 @@
 		5B245FE0181479C90052804B /* EBMovesConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EBMovesConfiguration.h; sourceTree = "<group>"; };
 		5B3C780A18265D45006838A6 /* VOStorylineSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOStorylineSegment.h; sourceTree = "<group>"; };
 		5B3C780B18265D45006838A6 /* VOStorylineSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOStorylineSegment.m; sourceTree = "<group>"; };
+		5B3C780D18266024006838A6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B85EE261821BCC00028BB75 /* NSDictionary+EB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EB.h"; sourceTree = "<group>"; };
 		5B85EE271821BCC00028BB75 /* NSDictionary+EB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSDictionary+EB.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5BF8703F180B4AE9007D5994 /* Moves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moves.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3C780E18266024006838A6 /* CoreLocation.framework in Frameworks */,
 				5BF87045180B4AE9007D5994 /* CoreGraphics.framework in Frameworks */,
 				5BF87049180B4AE9007D5994 /* CoreData.framework in Frameworks */,
 				5BF87047180B4AE9007D5994 /* UIKit.framework in Frameworks */,
@@ -188,6 +191,7 @@
 		5BF87041180B4AE9007D5994 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B3C780D18266024006838A6 /* CoreLocation.framework */,
 				5BF87042180B4AE9007D5994 /* Foundation.framework */,
 				5BF87044180B4AE9007D5994 /* CoreGraphics.framework */,
 				5BF87046180B4AE9007D5994 /* UIKit.framework */,

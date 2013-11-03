@@ -10,7 +10,7 @@
 #import "EBModel.h"
 
 
-@interface VOValueObject : EBDescribedObject
+@interface VOValueObject : NSManagedObject
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary;
 

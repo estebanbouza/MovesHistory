@@ -16,4 +16,12 @@
 @dynamic segment;
 @dynamic location;
 
+- (void)updateWithDictionary:(NSDictionary *)dictionary {
+ 
+    self.identifier = [dictionary objectOrNilForKey:@"id"];
+    self.location = [NSEntityDescription insertNewObjectForEntityForName:[[VOLocation class] description] inManagedObjectContext:MVManagedObjectContext];
+    [self.location updateWithDictionary:[dictionary objectForKey:@"location"]];
+    self.location.place = self;
+}
+
 @end
