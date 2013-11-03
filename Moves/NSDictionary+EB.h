@@ -10,4 +10,6 @@
 
 @interface NSDictionary (EB)
 
+- (id)objectForKeyOrNil:(id)aKey;
+
 @end

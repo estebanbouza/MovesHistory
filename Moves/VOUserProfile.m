@@ -18,12 +18,12 @@
 @dynamic storylines;
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
-    self.userID = [[dictionary objectForKey:@"userId"] stringValue];
+    self.userID = [[dictionary objectForKeyOrNil:@"userId"] stringValue];
     
-    NSDictionary *profileDictionary = [dictionary objectForKey:@"profile"];
+    NSDictionary *profileDictionary = [dictionary objectForKeyOrNil:@"profile"];
     
-    self.caloriesAvailable = [profileDictionary objectForKey:@"caloriesAvailable"];
-    self.firstDate = [[NSDateFormatter movesDefaultDateFormatter] dateFromString:[profileDictionary objectForKey:@"firstDate"]];
+    self.caloriesAvailable = [profileDictionary objectForKeyOrNil:@"caloriesAvailable"];
+    self.firstDate = [[NSDateFormatter movesDefaultDateFormatter] dateFromString:[profileDictionary objectForKeyOrNil:@"firstDate"]];
     
 }
 

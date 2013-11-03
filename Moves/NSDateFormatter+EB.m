@@ -22,4 +22,15 @@
     return dateFormatter;
 }
 
++ (NSDateFormatter const *)movesLongDateFormatter {
+    static dispatch_once_t onceToken;
+    static NSDateFormatter const *dateFormatter;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"yyyyMMdd’T’HHmmssZ";
+    });
+    
+    return dateFormatter;
+}
+
 @end

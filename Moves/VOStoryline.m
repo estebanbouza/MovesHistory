@@ -18,10 +18,12 @@
 @dynamic userProfile;
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
-    self.date = [[NSDateFormatter movesDefaultDateFormatter] dateFromString:[dictionary objectForKey:@"date"]];
+    self.date = [[NSDateFormatter movesDefaultDateFormatter] dateFromString:[dictionary objectForKeyOrNil:@"date"]];
     
-    for (NSDictionary *segmentDict in [dictionary objectForKey:@"segments"]) {
+    for (NSDictionary *segmentDict in [dictionary objectForKeyOrNil:@"segments"]) {
         VOSegment *segment = [NSEntityDescription insertNewObjectForEntityForName:[[VOSegment class] description] inManagedObjectContext:MVManagedObjectContext];
+        
+        segment.storyline = self;
         
         [segment updateWithDictionary:segmentDict];
     }

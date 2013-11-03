@@ -10,6 +10,10 @@
 
 @interface NSDateFormatter (EB)
 
+/** Formatter with format yyyyMMdd */
 + (NSDateFormatter const *)movesDefaultDateFormatter;
+
+/** Formatter with format "yyyyMMdd’T’HHmmssZ" */
++ (NSDateFormatter const *)movesLongDateFormatter;
 
 @end

@@ -23,6 +23,11 @@
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
     
+    self.type = [dictionary objectForKeyOrNil:@"type"];
+    self.startTime = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectForKeyOrNil:@"startTime"]];
+    self.endTime = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectForKeyOrNil:@"endTime"]];
+    
+    
 }
 
 
