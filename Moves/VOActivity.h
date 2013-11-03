@@ -11,7 +11,7 @@
 
 @class VOLocation, VOSegment;
 
-@interface VOActivity : NSManagedObject
+@interface VOActivity : VOValueObject
 
 @property (nonatomic, retain) NSString * activityType;
 @property (nonatomic, retain) NSNumber * calories;

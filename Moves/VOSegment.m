@@ -10,7 +10,7 @@
 #import "VOActivity.h"
 #import "VOPlace.h"
 #import "VOStoryline.h"
-
+#import "EBModel.h"
 
 @implementation VOSegment
 
@@ -27,10 +27,25 @@
     self.startTime = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectOrNilForKey:@"startTime"]];
     self.endTime = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectOrNilForKey:@"endTime"]];
     
-    if ([dictionary objectOrNilForKey:@"place"]) {
-        
+    NSDictionary *placeDict = nil;
+    NSDictionary *activitiesDict = nil;
+    
+    if ((placeDict = [dictionary objectOrNilForKey:@"place"])) {
+        VOPlace *place = [NSEntityDescription insertNewObjectForEntityForName:[[VOPlace class] description] inManagedObjectContext:MVManagedObjectContext];
+        [place updateWithDictionary:placeDict];
+        place.segment = self;
+
     }
-    else if ([dictionary objectOrNilForKey:@"activities"]) {
+    
+    else if ((activitiesDict = [dictionary objectOrNilForKey:@"activities"])) {
+        
+        for (NSDictionary *activityDict in activitiesDict) {
+            VOActivity *activity = [NSEntityDescription insertNewObjectForEntityForName:[[VOActivity class] description] inManagedObjectContext:MVManagedObjectContext];
+            [activity updateWithDictionary:activityDict];
+
+            activity.segment = self;
+            [self addActivitiesObject:activity];
+        }
         
     }
     

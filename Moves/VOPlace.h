@@ -11,7 +11,7 @@
 
 @class VOLocation, VOSegment;
 
-@interface VOPlace : NSManagedObject
+@interface VOPlace : VOValueObject
 
 @property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) VOSegment *segment;
