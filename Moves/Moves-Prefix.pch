@@ -24,8 +24,6 @@
 
 #endif
 
-#define MVManagedObjectContext [(EBAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext]
-
 // Logging
 
 // DLog script

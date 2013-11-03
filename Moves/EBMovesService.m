@@ -8,7 +8,7 @@
 
 #import "EBMovesService.h"
 #import "EBMovesConfiguration.h"
-#import "NSDateFormatter+EB.h"
+#import "EBModel.h"
 
 #import "VOUserProfile.h"
 #import "VOStoryline.h"
@@ -164,10 +164,9 @@
     [authManager GET:@"user/profile" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         VOUserProfile *userProfile = [NSEntityDescription insertNewObjectForEntityForName:@"VOUserProfile"
-                                                                   inManagedObjectContext:[((EBAppDelegate *)[UIApplication sharedApplication].delegate) managedObjectContext]];
+                                                                   inManagedObjectContext:MVManagedObjectContext];
         [userProfile updateWithDictionary:responseObject];
         
-        [(EBAppDelegate *)[UIApplication sharedApplication].delegate saveContext];
         completionBlock(userProfile);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

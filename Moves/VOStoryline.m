@@ -9,7 +9,7 @@
 #import "VOStoryline.h"
 #import "VOSegment.h"
 #import "VOUserProfile.h"
-#import "EBAppDelegate.h"
+#import "EBModel.h"
 
 @implementation VOStoryline
 
