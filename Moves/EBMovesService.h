@@ -10,8 +10,6 @@
 
 @class VOUserProfile, VOStoryline;
 
-@interface EBMovesService : NSObject
-
 typedef NS_ENUM(NSInteger, MVAuthScope) {
     MVAuthActivityScope     = 1 << 1,
     MVAuthLocationScope     = 1 << 2
@@ -19,6 +17,12 @@ typedef NS_ENUM(NSInteger, MVAuthScope) {
 
 typedef void (^MVRequestAccessCompletionBlock)(void);
 typedef void (^MVRequestErrorBlock)(NSError *);
+
+@interface EBMovesService : NSObject
+
+@property (nonatomic, strong) NSString *movesClientID;
+@property (nonatomic, strong) NSString *movesClientSecret;
+@property (nonatomic, strong) NSString *movesRedirectURI;
 
 #pragma mark - Lifecycle
 + (EBMovesService *)sharedService;

@@ -9,6 +9,8 @@
 #import "EBAppDelegate.h"
 #import "EBMainViewController.h"
 #import "EBModel.h"
+#import "EBMovesService.h"
+#import "EBMovesConfiguration.h"
 
 @interface EBAppDelegate ()
 
@@ -21,6 +23,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    EBMovesService *movesService = [EBMovesService sharedService];
+    movesService.movesClientID = MOVES_CLIENT_ID;
+    movesService.movesClientSecret = MOVES_CLIENT_SECRET;
+    movesService.movesRedirectURI = @"ebmoves://logincallback";
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 

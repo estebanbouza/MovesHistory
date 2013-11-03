@@ -7,7 +7,6 @@
 //
 
 #import "EBMovesService.h"
-#import "EBMovesConfiguration.h"
 #import "EBModel.h"
 
 #import "VOUserProfile.h"
@@ -83,10 +82,6 @@
     return desc;
 }
 
-- (NSString *)redirectURI {
-    return @"ebmoves://logincallback";
-}
-
 
 #pragma mark - URLs
 
@@ -96,7 +91,7 @@
 
 - (NSURL *)appAuthURLWithRedirectURI:(NSString *)redirectURI
                                scope:(MVAuthScope)scope {
-    NSString const * movesClientID = MOVES_CLIENT_ID;
+    NSString const * movesClientID = self.movesClientID;
     NSString *scopeString = [EBMovesService descriptionForScope:scope];
     
     NSString *urlString = [NSString stringWithFormat:@"moves://app/authorize?client_id=%@&redirect_uri=%@&scope=%@",
@@ -123,7 +118,7 @@
 }
 
 - (void)authenticate {
-    [self authenticateWithRedirectURI:[self redirectURI] scope:MVAuthLocationScope | MVAuthActivityScope];
+    [self authenticateWithRedirectURI:self.movesRedirectURI scope:MVAuthLocationScope | MVAuthActivityScope];
 }
 
 - (void)storeAuthCode:(NSString *)authCode {
@@ -137,9 +132,9 @@
     
     NSDictionary *requestParameters = @{@"grant_type" : @"authorization_code",
                                         @"code" : self.authCode,
-                                        @"client_id" : MOVES_CLIENT_ID,
-                                        @"client_secret" : MOVES_CLIENT_SECRET,
-                                        @"redirect_uri" : [self redirectURI]};
+                                        @"client_id" : self.movesClientID,
+                                        @"client_secret" : self.movesClientSecret,
+                                        @"redirect_uri" : self.movesRedirectURI};
     
     AFHTTPRequestOperation * operation = [manager POST:@"https://api.moves-app.com/oauth/v1/access_token" parameters:requestParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         DLog(@"Response Object: %@", responseObject);
