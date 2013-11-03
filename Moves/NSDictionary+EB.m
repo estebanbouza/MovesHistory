@@ -10,7 +10,7 @@
 
 @implementation NSDictionary (EB)
 
-- (id)objectForKeyOrNil:(id)aKey {
+- (id)objectOrNilForKey:(id)aKey {
     return [[self objectForKey:aKey] isKindOfClass:[NSNull class]] ? [self objectForKey:aKey] : nil;
 }
 

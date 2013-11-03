@@ -144,8 +144,8 @@
     AFHTTPRequestOperation * operation = [manager POST:@"https://api.moves-app.com/oauth/v1/access_token" parameters:requestParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         DLog(@"Response Object: %@", responseObject);
         
-        self.accessToken = [responseObject objectForKeyOrNil:@"access_token"];
-        self.refreshToken = [responseObject objectForKeyOrNil:@"response_token"];
+        self.accessToken = [responseObject objectOrNilForKey:@"access_token"];
+        self.refreshToken = [responseObject objectOrNilForKey:@"response_token"];
         
         completionBlock();
         

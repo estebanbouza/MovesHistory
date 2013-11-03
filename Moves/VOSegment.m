@@ -23,10 +23,16 @@
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
     
-    self.type = [dictionary objectForKeyOrNil:@"type"];
-    self.startTime = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectForKeyOrNil:@"startTime"]];
-    self.endTime = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectForKeyOrNil:@"endTime"]];
+    self.type = [dictionary objectOrNilForKey:@"type"];
+    self.startTime = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectOrNilForKey:@"startTime"]];
+    self.endTime = [[NSDateFormatter movesLongDateFormatter] dateFromString:[dictionary objectOrNilForKey:@"endTime"]];
     
+    if ([dictionary objectOrNilForKey:@"place"]) {
+        
+    }
+    else if ([dictionary objectOrNilForKey:@"activities"]) {
+        
+    }
     
 }
 
