@@ -11,7 +11,7 @@
 @implementation NSDictionary (EB)
 
 - (id)objectOrNilForKey:(id)aKey {
-    return [[self objectForKey:aKey] isKindOfClass:[NSNull class]] ? [self objectForKey:aKey] : nil;
+    return [[self objectForKey:aKey] isKindOfClass:[NSNull class]] ? nil : [self objectForKey:aKey];
 }
 
 @end
