@@ -8,7 +8,6 @@
 
 #import "VOActivity.h"
 #import "VOLocation.h"
-#import "VOSegment.h"
 
 
 @implementation VOActivity

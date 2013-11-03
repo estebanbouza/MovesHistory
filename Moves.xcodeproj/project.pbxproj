@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B091A3F180B4EBD00E5F051 /* EBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B091A3E180B4EBD00E5F051 /* EBMainViewController.m */; };
 		5B091A44180B535500E5F051 /* EBMovesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B091A43180B535500E5F051 /* EBMovesService.m */; };
+		5B3C780C18265D45006838A6 /* VOStorylineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C780B18265D45006838A6 /* VOStorylineSegment.m */; };
 		5B85EE281821BCC00028BB75 /* NSDictionary+EB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B85EE271821BCC00028BB75 /* NSDictionary+EB.m */; };
 		5BF87043180B4AE9007D5994 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF87042180B4AE9007D5994 /* Foundation.framework */; };
 		5BF87045180B4AE9007D5994 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF87044180B4AE9007D5994 /* CoreGraphics.framework */; };
@@ -28,7 +29,6 @@
 		5BFCF3E01825A2AC00CD51A8 /* NSDateFormatter+EB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3DF1825A2AC00CD51A8 /* NSDateFormatter+EB.m */; };
 		5BFCF3E81825A53300CD51A8 /* EBDescribedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */; };
 		5BFCF3EB1825A59D00CD51A8 /* EBRuntimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3EA1825A59D00CD51A8 /* EBRuntimeUtils.m */; };
-		5BFCF3F11825ADD100CD51A8 /* VOSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF3F01825ADD000CD51A8 /* VOSegment.m */; };
 		5BFCF4151825B26F00CD51A8 /* VOStoryline.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF4141825B26F00CD51A8 /* VOStoryline.m */; };
 		5BFCF4181825B26F00CD51A8 /* VOPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF4171825B26F00CD51A8 /* VOPlace.m */; };
 		5BFCF41E1825B27000CD51A8 /* VOLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCF41D1825B27000CD51A8 /* VOLocation.m */; };
@@ -56,6 +56,8 @@
 		5B091A42180B535500E5F051 /* EBMovesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBMovesService.h; sourceTree = "<group>"; };
 		5B091A43180B535500E5F051 /* EBMovesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EBMovesService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5B245FE0181479C90052804B /* EBMovesConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EBMovesConfiguration.h; sourceTree = "<group>"; };
+		5B3C780A18265D45006838A6 /* VOStorylineSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOStorylineSegment.h; sourceTree = "<group>"; };
+		5B3C780B18265D45006838A6 /* VOStorylineSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOStorylineSegment.m; sourceTree = "<group>"; };
 		5B85EE261821BCC00028BB75 /* NSDictionary+EB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EB.h"; sourceTree = "<group>"; };
 		5B85EE271821BCC00028BB75 /* NSDictionary+EB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSDictionary+EB.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5BF8703F180B4AE9007D5994 /* Moves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moves.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,13 +84,10 @@
 		5BFCF3E71825A53300CD51A8 /* EBDescribedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBDescribedObject.m; sourceTree = "<group>"; };
 		5BFCF3E91825A59D00CD51A8 /* EBRuntimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBRuntimeUtils.h; sourceTree = "<group>"; };
 		5BFCF3EA1825A59D00CD51A8 /* EBRuntimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBRuntimeUtils.m; sourceTree = "<group>"; };
-		5BFCF3F01825ADD000CD51A8 /* VOSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VOSegment.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5BFCF4131825B26F00CD51A8 /* VOStoryline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOStoryline.h; sourceTree = "<group>"; };
 		5BFCF4141825B26F00CD51A8 /* VOStoryline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VOStoryline.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5BFCF4161825B26F00CD51A8 /* VOPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOPlace.h; sourceTree = "<group>"; };
 		5BFCF4171825B26F00CD51A8 /* VOPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOPlace.m; sourceTree = "<group>"; };
-		5BFCF4191825B26F00CD51A8 /* VOSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOSegment.h; sourceTree = "<group>"; };
-		5BFCF41A1825B27000CD51A8 /* VOSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VOSegment.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5BFCF41C1825B27000CD51A8 /* VOLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOLocation.h; sourceTree = "<group>"; };
 		5BFCF41D1825B27000CD51A8 /* VOLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOLocation.m; sourceTree = "<group>"; };
 		5BFCF41F1825B27000CD51A8 /* VOUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOUserProfile.h; sourceTree = "<group>"; };
@@ -210,7 +209,6 @@
 				5BF87054180B4AE9007D5994 /* EBAppDelegate.m */,
 				5BF87059180B4AE9007D5994 /* Images.xcassets */,
 				5BF87056180B4AE9007D5994 /* Moves.xcdatamodeld */,
-				5BFCF3F01825ADD000CD51A8 /* VOSegment.m */,
 				5BF8704B180B4AE9007D5994 /* Supporting Files */,
 			);
 			path = Moves;
@@ -259,6 +257,8 @@
 		5BFCF4251825B5EC00CD51A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B3C780A18265D45006838A6 /* VOStorylineSegment.h */,
+				5B3C780B18265D45006838A6 /* VOStorylineSegment.m */,
 				5BFCF4291825BCDD00CD51A8 /* VOValueObject.h */,
 				5BFCF42A1825BCDD00CD51A8 /* VOValueObject.m */,
 				5BFCF4221825B27000CD51A8 /* VOActivity.h */,
@@ -267,8 +267,6 @@
 				5BFCF41D1825B27000CD51A8 /* VOLocation.m */,
 				5BFCF4161825B26F00CD51A8 /* VOPlace.h */,
 				5BFCF4171825B26F00CD51A8 /* VOPlace.m */,
-				5BFCF4191825B26F00CD51A8 /* VOSegment.h */,
-				5BFCF41A1825B27000CD51A8 /* VOSegment.m */,
 				5BFCF4131825B26F00CD51A8 /* VOStoryline.h */,
 				5BFCF4141825B26F00CD51A8 /* VOStoryline.m */,
 				5BFCF41F1825B27000CD51A8 /* VOUserProfile.h */,
@@ -413,7 +411,6 @@
 				5B091A3F180B4EBD00E5F051 /* EBMainViewController.m in Sources */,
 				5BFCF3E81825A53300CD51A8 /* EBDescribedObject.m in Sources */,
 				5B091A44180B535500E5F051 /* EBMovesService.m in Sources */,
-				5BFCF3F11825ADD100CD51A8 /* VOSegment.m in Sources */,
 				5BFCF41E1825B27000CD51A8 /* VOLocation.m in Sources */,
 				5BFCF4281825BA8900CD51A8 /* NSDate-Utilities.m in Sources */,
 				5BFCF4151825B26F00CD51A8 /* VOStoryline.m in Sources */,
@@ -421,6 +418,7 @@
 				5BFCF3E01825A2AC00CD51A8 /* NSDateFormatter+EB.m in Sources */,
 				5BF87051180B4AE9007D5994 /* main.m in Sources */,
 				5BFCF42E1825CA2900CD51A8 /* EBModel.m in Sources */,
+				5B3C780C18265D45006838A6 /* VOStorylineSegment.m in Sources */,
 				5BFCF42B1825BCDD00CD51A8 /* VOValueObject.m in Sources */,
 				5BFCF4241825B27000CD51A8 /* VOActivity.m in Sources */,
 				5B85EE281821BCC00028BB75 /* NSDictionary+EB.m in Sources */,

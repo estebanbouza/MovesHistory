@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "VOValueObject.h"
 
-@class VOSegment, VOUserProfile;
+@class VOStorylineSegment, VOUserProfile;
 
 @interface VOStoryline : VOValueObject
 
@@ -21,8 +21,8 @@
 
 @interface VOStoryline (CoreDataGeneratedAccessors)
 
-- (void)addSegmentsObject:(VOSegment *)value;
-- (void)removeSegmentsObject:(VOSegment *)value;
+- (void)addSegmentsObject:(VOStorylineSegment *)value;
+- (void)removeSegmentsObject:(VOStorylineSegment *)value;
 - (void)addSegments:(NSSet *)values;
 - (void)removeSegments:(NSSet *)values;
 

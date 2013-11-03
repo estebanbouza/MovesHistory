@@ -21,19 +21,19 @@
     <entity name="VOPlace" representedClassName="VOPlace" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOLocation" inverseName="place" inverseEntity="VOLocation" syncable="YES"/>
-        <relationship name="segment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOStorylineSegment" inverseName="places" inverseEntity="VOStorylineSegment" syncable="YES"/>
+        <relationship name="segment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOStorylineSegment" inverseName="place" inverseEntity="VOStorylineSegment" syncable="YES"/>
     </entity>
     <entity name="VOStoryline" representedClassName="VOStoryline" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="segments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VOStorylineSegment" inverseName="storyline" inverseEntity="VOStorylineSegment" syncable="YES"/>
         <relationship name="userProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOUserProfile" inverseName="storylines" inverseEntity="VOUserProfile" syncable="YES"/>
     </entity>
-    <entity name="VOStorylineSegment" representedClassName="VOSegment" syncable="YES">
+    <entity name="VOStorylineSegment" representedClassName="VOStorylineSegment" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="activities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VOActivity" inverseName="segment" inverseEntity="VOActivity" syncable="YES"/>
-        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VOPlace" inverseName="segment" inverseEntity="VOPlace" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOPlace" inverseName="segment" inverseEntity="VOPlace" syncable="YES"/>
         <relationship name="storyline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VOStoryline" inverseName="segments" inverseEntity="VOStoryline" syncable="YES"/>
     </entity>
     <entity name="VOUserProfile" representedClassName="VOUserProfile" syncable="YES">

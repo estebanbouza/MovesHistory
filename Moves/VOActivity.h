@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VOValueObject.h"
 
-@class VOLocation, VOSegment;
+@class VOLocation, VOStorylineSegment;
 
 @interface VOActivity : VOValueObject
 
@@ -20,7 +21,7 @@
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSNumber * steps;
-@property (nonatomic, retain) VOSegment *segment;
+@property (nonatomic, retain) VOStorylineSegment *segment;
 @property (nonatomic, retain) VOLocation *location;
 
 @end

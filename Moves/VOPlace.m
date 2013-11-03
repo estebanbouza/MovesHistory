@@ -8,8 +8,7 @@
 
 #import "VOPlace.h"
 #import "VOLocation.h"
-#import "VOSegment.h"
-
+#import "VOStorylineSegment.h"
 
 @implementation VOPlace
 

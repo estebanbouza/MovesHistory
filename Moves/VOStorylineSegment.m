@@ -1,25 +1,24 @@
 //
-//  VOSegment.m
+//  VOStorylineSegment.m
 //  Moves
 //
-//  Created by Esteban on 11/2/13.
+//  Created by Esteban on 11/3/13.
 //  Copyright (c) 2013 Esteban. All rights reserved.
 //
 
-#import "VOSegment.h"
+#import "VOStorylineSegment.h"
 #import "VOActivity.h"
 #import "VOPlace.h"
 #import "VOStoryline.h"
-#import "EBModel.h"
 
-@implementation VOSegment
+@implementation VOStorylineSegment
 
 @dynamic endTime;
 @dynamic startTime;
 @dynamic type;
-@dynamic storyline;
-@dynamic places;
 @dynamic activities;
+@dynamic place;
+@dynamic storyline;
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
     
@@ -34,7 +33,7 @@
         VOPlace *place = [NSEntityDescription insertNewObjectForEntityForName:[[VOPlace class] description] inManagedObjectContext:MVManagedObjectContext];
         [place updateWithDictionary:placeDict];
         place.segment = self;
-
+        
     }
     
     else if ((activitiesDict = [dictionary objectOrNilForKey:@"activities"])) {
@@ -42,7 +41,7 @@
         for (NSDictionary *activityDict in activitiesDict) {
             VOActivity *activity = [NSEntityDescription insertNewObjectForEntityForName:[[VOActivity class] description] inManagedObjectContext:MVManagedObjectContext];
             [activity updateWithDictionary:activityDict];
-
+            
             activity.segment = self;
             [self addActivitiesObject:activity];
         }

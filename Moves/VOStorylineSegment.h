@@ -1,8 +1,8 @@
 //
-//  VOSegment.h
+//  VOStorylineSegment.h
 //  Moves
 //
-//  Created by Esteban on 11/2/13.
+//  Created by Esteban on 11/3/13.
 //  Copyright (c) 2013 Esteban. All rights reserved.
 //
 
@@ -12,22 +12,17 @@
 
 @class VOActivity, VOPlace, VOStoryline;
 
-@interface VOSegment : VOValueObject
+@interface VOStorylineSegment : VOValueObject
 
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) VOStoryline *storyline;
-@property (nonatomic, retain) NSSet *places;
 @property (nonatomic, retain) NSSet *activities;
+@property (nonatomic, retain) VOPlace *place;
+@property (nonatomic, retain) VOStoryline *storyline;
 @end
 
-@interface VOSegment (CoreDataGeneratedAccessors)
-
-- (void)addPlacesObject:(VOPlace *)value;
-- (void)removePlacesObject:(VOPlace *)value;
-- (void)addPlaces:(NSSet *)values;
-- (void)removePlaces:(NSSet *)values;
+@interface VOStorylineSegment (CoreDataGeneratedAccessors)
 
 - (void)addActivitiesObject:(VOActivity *)value;
 - (void)removeActivitiesObject:(VOActivity *)value;

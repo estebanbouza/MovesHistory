@@ -7,6 +7,8 @@
 //
 
 #import "EBDescribedObject.h"
+#import "EBModel.h"
+
 
 @interface VOValueObject : EBDescribedObject
 

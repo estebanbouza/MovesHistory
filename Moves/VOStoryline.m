@@ -7,9 +7,9 @@
 //
 
 #import "VOStoryline.h"
-#import "VOSegment.h"
 #import "VOUserProfile.h"
 #import "EBModel.h"
+#import "VOStorylineSegment.h"
 
 @implementation VOStoryline
 
@@ -21,7 +21,7 @@
     self.date = [[NSDateFormatter movesDefaultDateFormatter] dateFromString:[dictionary objectOrNilForKey:@"date"]];
     
     for (NSDictionary *segmentDict in [dictionary objectOrNilForKey:@"segments"]) {
-        VOSegment *segment = [NSEntityDescription insertNewObjectForEntityForName:[[VOSegment class] description] inManagedObjectContext:MVManagedObjectContext];
+        VOStorylineSegment *segment = [NSEntityDescription insertNewObjectForEntityForName:[[VOStorylineSegment class] description] inManagedObjectContext:MVManagedObjectContext];
         
         segment.storyline = self;
         

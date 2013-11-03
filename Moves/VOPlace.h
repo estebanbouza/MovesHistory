@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VOValueObject.h"
 
-@class VOLocation, VOSegment;
+@class VOLocation, VOStorylineSegment;
 
 @interface VOPlace : VOValueObject
 
 @property (nonatomic, retain) NSNumber * identifier;
-@property (nonatomic, retain) VOSegment *segment;
+@property (nonatomic, retain) VOStorylineSegment *segment;
 @property (nonatomic, retain) VOLocation *location;
 
 @end
